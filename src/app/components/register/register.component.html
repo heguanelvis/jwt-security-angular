@@ -49,6 +49,13 @@
         id="confirmPassword"
       />
     </div>
-    <button type="submit" class="btn btn-primary">Register</button>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!signupForm.valid"
+      [ngStyle]="{'cursor': !signupForm.valid ? 'not-allowed' : 'pointer'}"
+    >
+      Register
+    </button>
   </form>
 </div>
