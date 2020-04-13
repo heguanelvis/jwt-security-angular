@@ -12,13 +12,11 @@ export class RoleGuardService implements CanActivate {
   constructor(private auth: AuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
-    const expectedRole = route.data.expectedRole;
-    const token = localStorage.getItem("token");
-    const tokenPayload = this.jwtHelper.decodeToken(token);
+    const expectedAuthorities = route.data.expectedAuthorities;
 
     if (
       !this.auth.isAuthenticated() ||
-      !tokenPayload.authorities.includes(expectedRole)
+      !this.auth.hasAuthorities(expectedAuthorities)
     ) {
       this.auth.logout();
       return false;

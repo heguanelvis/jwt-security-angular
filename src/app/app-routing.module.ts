@@ -26,7 +26,7 @@ const routes: Routes = [
     component: AdminComponent,
     canActivate: [RoleGuardService],
     data: {
-      expectedRole: "ROLE_ADMIN"
+      expectedAuthorities: ["ROLE_ADMIN"]
     }
   }
 ];

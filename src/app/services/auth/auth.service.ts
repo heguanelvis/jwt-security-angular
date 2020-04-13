@@ -47,4 +47,16 @@ export class AuthService {
 
     return !this.jwtHelper.isTokenExpired(token);
   }
+
+  public hasAuthorities(expectedAuthorities: string[]): boolean {
+    const token = localStorage.getItem("token");
+    const tokenPayload = this.jwtHelper.decodeToken(token);
+
+    let authorityChecker = (userAuthorities, expectedAuthorities) =>
+      expectedAuthorities.every(authority =>
+        userAuthorities.includes(authority)
+      );
+
+    return authorityChecker(tokenPayload.authorities, expectedAuthorities);
+  }
 }
