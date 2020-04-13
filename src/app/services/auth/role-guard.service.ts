@@ -9,7 +9,7 @@ import { JwtHelperService } from "@auth0/angular-jwt";
 export class RoleGuardService implements CanActivate {
   jwtHelper: JwtHelperService = new JwtHelperService();
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
     const expectedRole = route.data.expectedRole;
