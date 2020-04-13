@@ -11,6 +11,20 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  public register(username, email, confirmEmail, password, confirmPassword) {
+    return this.http
+      .post<any>(`http://localhost:8080/api/register`, {
+        username,
+        email,
+        confirmEmail,
+        password,
+        confirmPassword
+      })
+      .subscribe(response => {
+        alert(response.message);
+      });
+  }
+
   public login(username: string, password: string) {
     return this.http
       .post<any>(`http://localhost:8080/api/authenticate`, {

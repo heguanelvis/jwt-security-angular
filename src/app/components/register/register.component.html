@@ -1,20 +1,36 @@
 <div class="register-form-container">
-  <form>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit(signupForm)">
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" class="form-control" id="username" />
+      <input
+        formControlName="username"
+        type="text"
+        class="form-control"
+        id="username"
+      />
     </div>
     <div class="form-group">
       <label for="email">Email</label>
-      <input type="email" class="form-control" id="email" />
+      <input
+        formControlName="email"
+        type="email"
+        class="form-control"
+        id="email"
+      />
     </div>
     <div class="form-group">
       <label for="confirmEmail">Confirm Email</label>
-      <input type="email" class="form-control" id="confirmEmail" />
+      <input
+        formControlName="confirmEmail"
+        type="email"
+        class="form-control"
+        id="confirmEmail"
+      />
     </div>
     <div class="form-group">
       <label for="password">Password</label>
       <input
+        formControlName="password"
         type="password"
         class="form-control"
         id="password"
@@ -26,7 +42,12 @@
     </div>
     <div class="form-group">
       <label for="confirmPassword">Confirm Password</label>
-      <input type="password" class="form-control" id="confirmPassword" />
+      <input
+        formControlName="confirmPassword"
+        type="password"
+        class="form-control"
+        id="confirmPassword"
+      />
     </div>
     <button type="submit" class="btn btn-primary">Register</button>
   </form>
