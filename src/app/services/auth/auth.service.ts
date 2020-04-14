@@ -11,7 +11,25 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  public register(username, email, confirmEmail, password, confirmPassword) {
+  public checkUsername(username: string) {
+    return this.http.post<any>(`http://localhost:8080/api/checkusername`, {
+      username
+    });
+  }
+
+  public checkEmail(email: string) {
+    return this.http.post<any>(`http://localhost:8080/api/checkemail`, {
+      email
+    });
+  }
+
+  public register(
+    username: string,
+    email: string,
+    confirmEmail: string,
+    password: string,
+    confirmPassword: string
+  ) {
     return this.http
       .post<any>(`http://localhost:8080/api/register`, {
         username,

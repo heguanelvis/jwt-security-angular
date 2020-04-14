@@ -9,6 +9,8 @@ import { AuthService } from "src/app/services/auth/auth.service";
 })
 export class RegisterComponent implements OnInit {
   signupForm: FormGroup;
+  usernameAvailable: boolean = true;
+  emailAvailable: boolean = true;
 
   constructor(private formBuilder: FormBuilder, private auth: AuthService) {}
 
@@ -42,6 +44,20 @@ export class RegisterComponent implements OnInit {
     } else {
       alert("Form errors...try again!");
     }
+  }
+
+  checkUsername() {
+    this.auth
+      .checkUsername(this.username.value)
+      .subscribe(
+        response => (this.usernameAvailable = response.usernameAvailable)
+      );
+  }
+
+  checkEmail() {
+    this.auth
+      .checkEmail(this.email.value)
+      .subscribe(response => (this.emailAvailable = response.emailAvailable));
   }
 
   get username() {
