@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(loginForm: FormGroup): void {
-    console.log(loginForm.value);
     this.auth.login(loginForm.value.username, loginForm.value.password);
   }
 }

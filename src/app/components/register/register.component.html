@@ -17,7 +17,7 @@
       <small class="form-text text-danger" *ngIf="username.errors?.maxlength"
         >Username must be 64 characters or less</small
       >
-      <small class="form-text text-danger" *ngIf="!usernameAvailable"
+      <small class="form-text text-danger" *ngIf="usernameAvailable"
         >This username is not available</small
       >
     </div>
@@ -38,7 +38,7 @@
       <small class="form-text text-danger" *ngIf="email.errors?.email"
         >Email must be valid</small
       >
-      <small class="form-text text-danger" *ngIf="!emailAvailable"
+      <small class="form-text text-danger" *ngIf="emailAvailable"
         >This email is not available</small
       >
     </div>

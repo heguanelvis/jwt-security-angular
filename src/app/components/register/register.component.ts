@@ -9,8 +9,8 @@ import { AuthService } from "src/app/services/auth/auth.service";
 })
 export class RegisterComponent implements OnInit {
   signupForm: FormGroup;
-  usernameAvailable: boolean = true;
-  emailAvailable: boolean = true;
+  usernameAvailable: boolean = false;
+  emailAvailable: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private auth: AuthService) {}
 
