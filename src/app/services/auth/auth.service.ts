@@ -31,10 +31,16 @@ export class AuthService {
         username,
         password
       })
-      .subscribe(response => {
-        localStorage.setItem("token", response.jwt);
-        this.router.navigate([""]);
-      });
+      .subscribe(
+        response => {
+          localStorage.setItem("token", response.jwt);
+          this.router.navigate([""]);
+        },
+        error => {
+          alert("Incorrect username or password!");
+          throw error;
+        }
+      );
   }
 
   public logout(): void {

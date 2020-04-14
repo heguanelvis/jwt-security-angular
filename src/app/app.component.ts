@@ -7,7 +7,7 @@ import { AuthService } from "./services/auth/auth.service";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  title = "jwt-security-angular";
+  collapsed: boolean = true;
 
   constructor(private auth: AuthService) {}
 

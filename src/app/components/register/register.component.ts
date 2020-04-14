@@ -13,49 +13,60 @@ export class RegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private auth: AuthService) {}
 
   ngOnInit(): void {
-    this.signupForm = this.formBuilder.group(
-      {
-        username: ["", [Validators.required, Validators.maxLength(64)]],
-        email: ["", [Validators.required, Validators.email]],
-        confirmEmail: ["", [Validators.required, Validators.email]],
-        password: ["", [Validators.required, Validators.minLength(8)]],
-        confirmPassword: ["", [Validators.required, Validators.minLength(8)]]
-      },
-      { validators: [this.emailMatchValidator, this.passwordMatchValidator] }
-    );
-  }
-
-  emailMatchValidator(signupForm: FormGroup) {
-    return signupForm.controls["email"].value ===
-      signupForm.controls["confirmEmail"].value
-      ? null
-      : { mismatch: true };
-  }
-
-  passwordMatchValidator(signupForm: FormGroup) {
-    return signupForm.controls["password"].value ===
-      signupForm.controls["confirmPassword"].value
-      ? null
-      : { mismatch: true };
+    this.signupForm = this.formBuilder.group({
+      username: ["", [Validators.required, Validators.maxLength(64)]],
+      email: ["", [Validators.required, Validators.email]],
+      confirmEmail: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ["", [Validators.required, Validators.minLength(8)]]
+    });
   }
 
   onSubmit(signupForm: FormGroup): void {
-    console.log(signupForm.value);
-    console.log(signupForm);
-    const {
-      username,
-      email,
-      confirmEmail,
-      password,
-      confirmPassword
-    } = signupForm.value;
+    if (signupForm.valid && this.emailsMatch && this.passwordsMatch) {
+      const {
+        username,
+        email,
+        confirmEmail,
+        password,
+        confirmPassword
+      } = signupForm.value;
 
-    this.auth.register(
-      username,
-      email,
-      confirmEmail,
-      password,
-      confirmPassword
+      this.auth.register(
+        username,
+        email,
+        confirmEmail,
+        password,
+        confirmPassword
+      );
+    } else {
+      alert("Form errors...try again!");
+    }
+  }
+
+  get username() {
+    return this.signupForm.get("username");
+  }
+
+  get email() {
+    return this.signupForm.get("email");
+  }
+
+  get password() {
+    return this.signupForm.get("password");
+  }
+
+  get emailsMatch() {
+    return (
+      this.signupForm.get("email").value ===
+      this.signupForm.get("confirmEmail").value
+    );
+  }
+
+  get passwordsMatch() {
+    return (
+      this.signupForm.get("password").value ===
+      this.signupForm.get("confirmPassword").value
     );
   }
 }
